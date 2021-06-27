@@ -1,11 +1,7 @@
 import React from 'react'
 import { motion } from "framer-motion";
 
-const content = (isFirstMount) => ({
-    animate: {
-      transition: { staggerChildren: 0.1, delayChildren: isFirstMount ? 2.8 : 0 },
-    },
-  });
+
 const blackBox = {
     initial: {
       height: "100%",
