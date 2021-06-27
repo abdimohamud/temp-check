@@ -1,0 +1,18 @@
+html,
+body {
+  background-color: var(--background-color);
+  color: var(--color);
+  transition: --color 0.2s ease-in;
+  
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+#App{
+  
+ 
+  transition: background-color 0.2s ease-in;
+
+}
