@@ -1,7 +1,6 @@
 import React from 'react'
 import { motion } from "framer-motion";
-
-
+import Home from './Home';
 const blackBox = {
     initial: {
       height: "100%",
@@ -43,18 +42,20 @@ const blackBox = {
     },
   };
 
-  export default function IndexPage({ isFirstMount }) {
+  
+  export default function Loading({ isFirstMount }) {
     return (
         <motion.section exit={{ opacity: 0 }}>
           {isFirstMount && <InitialTransition />}
+          <div>
+            <Home/>
+        </div>
         </motion.section>
     )
   }
 
 
-  
-
-  const InitialTransition = () => {
+const InitialTransition = () => {
     // Scroll user to top to avoid showing the footer
     React.useState(() => {
       typeof windows !== "undefined" && window.scrollTo(0, 0);
@@ -92,7 +93,7 @@ const blackBox = {
             y="50%"
             style={{ fill: "url(#pattern)" }}
           >
-            {/* <img src="images/avi.svg" alt="" className="w-10 h-10 p-2 text-white "/>*/}{" "}
+           
             &#8987; Loading..
           </text>
         </motion.svg>
