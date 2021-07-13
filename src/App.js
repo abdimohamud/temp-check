@@ -1,16 +1,22 @@
 import React, {useState, useEffect} from "react";
-import { Switch, Route, useLocation, useHistory } from "react-router-dom";
+import { Switch, Route,  useHistory } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-
-import IndexPage from "./pages/index";
-
-
-
-const App = () => {
-
-  const [isFirstMount, setIsFirstMount] = useState(true);
-  const location = useLocation();
+import { WeatherProvider } from "./context";
+import Loading from "./components/Loading";
+import GetStarted from "./components/Started";
+import CurrentWeather from "./components/CurrentWeather";
+import Forecast from "./components/Forecast";
+const  App=() => { 
+const initialtState = {
+  zip:"",
+  lat:null,
+  lon:null,
+  weather: null,
+  forecast:null,
+}
+const [state, setState] = useState(initialtState)
   const history = useHistory();
+  const [isFirstMount, setIsFirstMount] = useState(true);
   useEffect(() => {
     const unlisten = history.listen(() => {
       isFirstMount && setIsFirstMount(false);
@@ -18,26 +24,32 @@ const App = () => {
     
     return unlisten;
   }, [history, isFirstMount]);
-  
- 
-
   return (
     <div className="flex flex-col min-h-screen">
-      <Switch location={location} key={location.pathname}>
-    <AnimatePresence exitBeforeEnter>
-     
-      
-        <Route
-          path="/"
-          exact
-          component={(props) => (
-            <IndexPage isFirstMount={isFirstMount} {...props} />
-          )}
-        />
-    </AnimatePresence>
+    <WeatherProvider value={{state:state, setState:setState}}>
+    <Route render={({ location }) => ( 
+    <AnimatePresence exitBeforeEnter={true}>
+      <Switch location={location} key={location.pathname}>    
+        <Route path="/get-started" component ={(props) =>(
+          <GetStarted {...props} />
+          )} />
+
+        <Route path="/weather" component={(props)=>( <CurrentWeather {...props} />)}/>
+        <Route path="/forecast" component={(props) => (<Forecast {...props} />)} />
+          <Route
+              path="/"
+              exact
+              component={(props) => (
+                <Loading isFirstMount={isFirstMount} {...props} />
+              )}
+            />
       </Switch>
-      </div>
+    </AnimatePresence>
+    )} />
+  </WeatherProvider>
+      
+    </div>
   );
-};
+}
 
 export default App;

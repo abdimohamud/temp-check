@@ -1,7 +1,6 @@
 import React from 'react'
 import { motion } from "framer-motion";
-
-
+import Home from './Home';
 const blackBox = {
     initial: {
       height: "100%",
@@ -11,7 +10,7 @@ const blackBox = {
       height: 0,
       transition: {
         when: "afterChildren",
-        duration: 1.5,
+        duration: 1,
         ease: [0.87, 0, 0.13, 1],
       },
     },
@@ -43,18 +42,23 @@ const blackBox = {
     },
   };
 
-  export default function IndexPage({ isFirstMount }) {
+  
+  export default function Loading({ isFirstMount }) {
     return (
+      <>
         <motion.section exit={{ opacity: 0 }}>
           {isFirstMount && <InitialTransition />}
+         
+            <Home/>
+        
         </motion.section>
+        </>
     )
   }
 
 
-  
-
-  const InitialTransition = () => {
+const InitialTransition = () => {
+ 
     // Scroll user to top to avoid showing the footer
     React.useState(() => {
       typeof windows !== "undefined" && window.scrollTo(0, 0);
@@ -67,9 +71,11 @@ const blackBox = {
         animate="animate"
         variants={blackBox}
         onAnimationStart={() => document.body.classList.add("overflow-hidden")}
-        onAnimationComplete={() =>
+        onAnimationComplete={() =>{
+        
           document.body.classList.remove("overflow-hidden")
-        }
+          window.scrollTo(0, 0);
+        }}
       >
         <motion.svg variants={textContainer} className="absolute z-50 flex">
           <pattern
@@ -92,7 +98,7 @@ const blackBox = {
             y="50%"
             style={{ fill: "url(#pattern)" }}
           >
-            {/* <img src="images/avi.svg" alt="" className="w-10 h-10 p-2 text-white "/>*/}{" "}
+           
             &#8987; Loading..
           </text>
         </motion.svg>
