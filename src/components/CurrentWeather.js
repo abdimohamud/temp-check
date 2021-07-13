@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import Map from './map'
 import { Link } from 'react-router-dom'
 import { Container, WeatherSideContainer, TodayInfo } from '../styles'
-import { fetchWeatherByLocation, fetchWeatherByZip, KelvintoFahrenheit, timeConverter } from '../hooks'
+import { fetchWeatherByLocation, fetchWeatherByZip, KelvintoFahrenheit, timeConverter, fetchForecastByLocation, fetchForecastByZip } from '../hooks'
 import moment from 'moment'
 import WeatherContext from '../context'
 
@@ -10,13 +10,16 @@ import { SpinnerCircular } from 'spinners-react';
 const CurrentWeather = () => {
     const [loading, setLoading] = useState(true)
     const [weather, setWeather] = useState(null)
-    const {state} = useContext(WeatherContext)
+    const {state, setForecast} = useContext(WeatherContext)
   useEffect(() => {
      if(state.lat && state.lon ){
         fetchWeatherByLocation(state.lat, state.lon).then(res=>{setWeather(res.data) ;setLoading(false)}).catch(err=>console.log(err))
+        fetchForecastByLocation(state.lat, state.lon).then(res=>{setForecast(res.data) ;setLoading(false)}).catch(err=>console.log(err))
+        
      } 
      else if (state.zip.length>0) {
          fetchWeatherByZip(state.zip).then(res=>{setWeather(res.data) ;setLoading(false)}).catch(err=>console.log(err))
+         fetchForecastByZip(state.lat, state.lon).then(res=>{setForecast(res.data) ;setLoading(false)}).catch(err=>console.log(err))
      }
   }, [state.zip, state.lon, state.lat])
  

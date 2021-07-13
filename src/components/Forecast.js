@@ -13,20 +13,17 @@ Modal.setAppElement("#root");
  
 const Forecast = () => {
     const [loading, setLoading] = useState(true)
-    const {state}=useContext(WeatherContext)
-    const [forecast, setForecast] = useState(null)
+    const {state, forecast}=useContext(WeatherContext)
+  
     const [isOpen, setIsOpen] = useState(false);
     const [activeDay, setActiveDay] = useState(null)
     let history = useHistory();
    
     useEffect(() => {
-        if(state.lat && state.lon ){
-           fetchForecastByLocation(state.lat, state.lon).then(res=>{setForecast(res.data) ;setLoading(false)}).catch(err=>console.log(err))
-        } 
-        else if (state.zip.length>0) {
-            fetchForecastByZip(state.zip).then(res=>{setForecast(res.data) ;setLoading(false)}).catch(err=>console.log(err))
-        }
-     }, [state.zip, state.lon, state.lat])
+      if (forecast){
+        setLoading(false)
+      }
+     }, [forecast])
     
    function toggleModal() {
     setIsOpen(!isOpen);

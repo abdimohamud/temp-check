@@ -15,6 +15,7 @@ const initialtState = {
   forecast:null,
 }
 const [state, setState] = useState(initialtState)
+const [forecast, setForecast] = useState(null)
   const history = useHistory();
   const [isFirstMount, setIsFirstMount] = useState(true);
   useEffect(() => {
@@ -26,7 +27,7 @@ const [state, setState] = useState(initialtState)
   }, [history, isFirstMount]);
   return (
     <div className="flex flex-col min-h-screen">
-    <WeatherProvider value={{state:state, setState:setState}}>
+    <WeatherProvider value={{state:state, setState:setState, forecast:forecast, setForecast:setForecast}}>
     <Route render={({ location }) => ( 
     <AnimatePresence exitBeforeEnter={true}>
       <Switch location={location} key={location.pathname}>    
