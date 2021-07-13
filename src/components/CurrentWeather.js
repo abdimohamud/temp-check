@@ -21,7 +21,7 @@ const CurrentWeather = () => {
          fetchWeatherByZip(state.zip).then(res=>{setWeather(res.data) ;setLoading(false)}).catch(err=>console.log(err))
          fetchForecastByZip(state.lat, state.lon).then(res=>{setForecast(res.data) ;setLoading(false)}).catch(err=>console.log(err))
      }
-  }, [state.zip, state.lon, state.lat])
+  }, [state.zip, state.lon, state.lat, setForecast])
  
     return (
         <div>

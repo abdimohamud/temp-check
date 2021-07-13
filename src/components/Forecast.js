@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import {Container,WeatherSideContainer} from '../styles'
 import moment from 'moment'
 import { useHistory } from 'react-router-dom';
-import { KelvintoFahrenheit, timeConverter, fetchForecastByLocation, fetchForecastByZip} from '../hooks';
+import { KelvintoFahrenheit, timeConverter, } from '../hooks';
 import Modal from "react-modal";
 import WeatherDay from './WeatherDay';
 import WeatherContext from '../context';
@@ -13,7 +13,7 @@ Modal.setAppElement("#root");
  
 const Forecast = () => {
     const [loading, setLoading] = useState(true)
-    const {state, forecast}=useContext(WeatherContext)
+    const { forecast}=useContext(WeatherContext)
   
     const [isOpen, setIsOpen] = useState(false);
     const [activeDay, setActiveDay] = useState(null)
