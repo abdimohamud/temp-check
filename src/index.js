@@ -5,6 +5,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 require('dotenv').config()
+var DEBUG = false;
+if(!DEBUG){
+    if(!window.console) window.console = {};
+    var methods = ["log", "debug", "warn", "info"];
+    for(var i=0;i<methods.length;i++){
+        console[methods[i]] = function(){};
+    }
+}
 ReactDOM.render(
   <React.StrictMode>
     <Router>
