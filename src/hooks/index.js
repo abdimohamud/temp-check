@@ -2,7 +2,7 @@ import axios from "axios";
 
 let apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
-let baseURL = "api.openweathermap.org/data/2.5";
+let baseURL = "https://posts-jest-app.herokuapp.com/https:/api.openweathermap.org/data/2.5";
 
 export const KelvintoFahrenheit = (k) => {
   return (k * 1.8 - 459.67).toFixed(1);
