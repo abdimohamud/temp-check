@@ -1,17 +1,14 @@
 import React, {useState, useEffect, useContext} from 'react'
 import Modal from "react-modal";
 import { useHistory } from 'react-router-dom';
-import { getLocation } from '../hooks';
 import {reverseGeocode} from 'latlng-to-zip'
-import { SpinnerCircular } from 'spinners-react';
 import WeatherContext from '../context';
 
 
 Modal.setAppElement("#root");
-let key = "AIzaSyDYgCMvh0a6PLqMly6nIt2NYkV4T_KhyLU"
-const GetStarted = (props) => {
+let key = process.env.GOOGLE_API_KEY
+const GetStarted = () => {
   let history = useHistory()
-  const [toggle, setToggle]=useState(false)
   const {state, setState } = useContext(WeatherContext)
   const [zipcode, setZipCode] = useState("")
   const [isOpen, setIsOpen] = useState(false);
@@ -88,11 +85,6 @@ reverseGeocode(loco, key)
         <input value={zipcode.zip} onChange={(e)=>{const {value} = e.target; setZipCode({...zipcode,[e.target.name]:e.target.value})  } } type="text" id="zip-code" name="zip" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
   
       </div>
-      {/* <div className="relative flex-grow w-full">
-        <label for="email" className="leading-7 text-sm text-gray-600">Email</label>
-        <input type="email" id="email" name="email" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
-      </div> */}
-      
     </div>
     <br/>
     <div style={{display:'flex', justifyContent:'center'}}>
@@ -104,4 +96,3 @@ reverseGeocode(loco, key)
 }
 
 export default GetStarted
-// updateZip(zipcode);

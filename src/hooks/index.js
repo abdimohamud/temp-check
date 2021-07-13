@@ -1,8 +1,8 @@
 import axios from "axios";
 
-let apiKey = "53762837fe835166ae7879d926dd8814";
+let apiKey = process.env.WEATHER_API_KEY;
 
-let baseURL = "http://localhost:8080/api.openweathermap.org/data/2.5";
+let baseURL = "api.openweathermap.org/data/2.5";
 
 export const KelvintoFahrenheit = (k) => {
   return (k * 1.8 - 459.67).toFixed(1);
@@ -40,7 +40,7 @@ export const timeConverter =(UNIX_timestamp) =>{
   }
   
 export const fetchForecastByZip = (zip) => {
-    return axios.get(`http://localhost:8080/api.openweathermap.org/data/2.5/forecast/daily?zip=${zip},US&cnt=5&appid=${apiKey}`, {
+    return axios.get(`api.openweathermap.org/data/2.5/forecast/daily?zip=${zip},US&cnt=5&appid=${apiKey}`, {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json"
@@ -48,28 +48,10 @@ export const fetchForecastByZip = (zip) => {
       });
 }
 export const fetchForecastByLocation= (lat, lon) => {
-  return axios.get(`http://localhost:8080/api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=5&appid=${apiKey}`, {
+  return axios.get(`api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=5&appid=${apiKey}`, {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json"
     }
   });
 };
-
-export const getLocation=()=> {
-    
-    function onSuccess(position) {
-        const {
-            latitude,
-            longitude
-        } = position.coords;
-
-        console.log({lat:latitude, lon:longitude})
-    }
-
-    // handle error case
-    function onError(err) {
-       console.log(err)
-    }
-   navigator.geolocation.getCurrentPosition(onSuccess, onError);
-}

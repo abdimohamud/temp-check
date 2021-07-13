@@ -2,7 +2,7 @@ import React from 'react'
 import { timeConverter } from '../hooks'
 import { Container, WeatherSideContainer2, TodayInfo } from '../styles'
 import moment from 'moment'
-const WeatherDay = ({activeDay, setIsOpen, isOpen, item, forecast, toggleModal, KelvintoFahrenheit ,day, dateOfDay}) => {
+const WeatherDay = ({activeDay ,forecast, toggleModal, KelvintoFahrenheit}) => {
     return (
         <div>
             <div>

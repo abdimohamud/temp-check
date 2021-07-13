@@ -27,7 +27,7 @@ import axios from "axios";
     lng: -79.3832,
   };
 
-let key ="AIzaSyDYgCMvh0a6PLqMly6nIt2NYkV4T_KhyLU"
+let key =process.env.GOOGLE_API_KEY
 
 const Map = () => {
     const { isLoaded, loadError } = useLoadScript({
@@ -42,7 +42,7 @@ const Map = () => {
       }, []);
     useEffect(() => {
        if (!state.lat || !state.lon){
-        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDYgCMvh0a6PLqMly6nIt2NYkV4T_KhyLU&address=${state.zip}`).then(res=>{
+        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?key=${key}&address=${state.zip}`).then(res=>{
         setCenter(res.data.results[0].geometry.location)
         }).catch(err=>console.log(err))
        } else{

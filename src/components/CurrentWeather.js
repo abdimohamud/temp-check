@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import Map from './map'
 import { Link } from 'react-router-dom'
 import { Container, WeatherSideContainer, TodayInfo } from '../styles'
-import { fetchForecastByLocation, fetchWeatherByLocation, fetchWeatherByZip, KelvintoFahrenheit, timeConverter } from '../hooks'
+import { fetchWeatherByLocation, fetchWeatherByZip, KelvintoFahrenheit, timeConverter } from '../hooks'
 import moment from 'moment'
 import WeatherContext from '../context'
 
