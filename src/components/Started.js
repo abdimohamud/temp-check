@@ -2,12 +2,13 @@ import React, {useState, useEffect, useContext} from 'react'
 import Modal from "react-modal";
 import { useHistory } from 'react-router-dom';
 import { getLocation } from '../hooks';
-
+import {reverseGeocode} from 'latlng-to-zip'
 import { SpinnerCircular } from 'spinners-react';
 import WeatherContext from '../context';
 
 
 Modal.setAppElement("#root");
+let key = "AIzaSyDYgCMvh0a6PLqMly6nIt2NYkV4T_KhyLU"
 const GetStarted = (props) => {
   let history = useHistory()
   const [toggle, setToggle]=useState(false)
@@ -28,6 +29,10 @@ const GetStarted = (props) => {
       } = position.coords;
 
       setState({...state, lat:latitude, lon:longitude}) 
+      let loco = {latitude, longitude};
+reverseGeocode(loco, key)
+  .then(zipcode => setState({...state, zip:zipcode}))
+  .catch(err => console.log(err));
   }
 
   // handle error case
@@ -91,7 +96,7 @@ const GetStarted = (props) => {
     </div>
     <br/>
     <div style={{display:'flex', justifyContent:'center'}}>
-    <button className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"  onClick={(e)=>{e.preventDefault();  setState({...state, zip:zipcode.zip});setIsOpen(false); history.push('/current-weather')}}>Submit</button>
+    <button className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"  onClick={(e)=>{e.preventDefault();  setState({...state, zip:zipcode.zip});setIsOpen(false); history.push('/weather')}}>Submit</button>
       </div>
       </Modal>
   </>

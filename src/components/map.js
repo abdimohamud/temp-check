@@ -14,8 +14,8 @@ import axios from "axios";
 
   const libraries = ["places"];
   const mapContainerStyle = {
-    height: "100vh",
-    width: "100vw",
+    height: "50vh",
+    width: "50vw",
   };
   const options = {
    

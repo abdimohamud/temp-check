@@ -10,7 +10,7 @@ const blackBox = {
       height: 0,
       transition: {
         when: "afterChildren",
-        duration: 1.5,
+        duration: 1,
         ease: [0.87, 0, 0.13, 1],
       },
     },
@@ -45,17 +45,20 @@ const blackBox = {
   
   export default function Loading({ isFirstMount }) {
     return (
+      <>
         <motion.section exit={{ opacity: 0 }}>
           {isFirstMount && <InitialTransition />}
-          <div>
+         
             <Home/>
-        </div>
+        
         </motion.section>
+        </>
     )
   }
 
 
 const InitialTransition = () => {
+  let name ="absolute z-50 flex"
     // Scroll user to top to avoid showing the footer
     React.useState(() => {
       typeof windows !== "undefined" && window.scrollTo(0, 0);
@@ -68,9 +71,11 @@ const InitialTransition = () => {
         animate="animate"
         variants={blackBox}
         onAnimationStart={() => document.body.classList.add("overflow-hidden")}
-        onAnimationComplete={() =>
+        onAnimationComplete={() =>{
+          name="";
           document.body.classList.remove("overflow-hidden")
-        }
+          window.scrollTo(0, 0);
+        }}
       >
         <motion.svg variants={textContainer} className="absolute z-50 flex">
           <pattern

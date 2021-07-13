@@ -39,7 +39,14 @@ export const timeConverter =(UNIX_timestamp) =>{
     return time;
   }
   
-
+export const fetchForecastByZip = (zip) => {
+    return axios.get(`http://localhost:8080/api.openweathermap.org/data/2.5/forecast/daily?zip=${zip},US&cnt=5&appid=${apiKey}`, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
+        }
+      });
+}
 export const fetchForecastByLocation= (lat, lon) => {
   return axios.get(`http://localhost:8080/api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=5&appid=${apiKey}`, {
     headers: {

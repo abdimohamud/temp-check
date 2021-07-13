@@ -24,11 +24,15 @@ const CurrentWeather = () => {
         <div>
             {loading? <SpinnerCircular loading={loading.toString()} />:
             <section className="text-gray-600 body-font">
-  <div className="container px-5 py-24 mx-auto flex flex-wrap">
+  <div className="container px-5 py-24 mx-auto flex flex-wrap" style={{display:'flex', justifyContent:'space-between'}}>
+  <div className="lg:w-1/2 sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0">
+  
+  <Map/> 
+</div>
     <div className="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-1/2 sm:w-2/3 content-start sm:pr-10">
-      <div className="w-full sm:p-4 px-4 mb-6">
-        <h1 className="title-font font-medium text-xl mb-2 text-gray-900">Here's your current weather report</h1>
-        <div className="leading-relaxed">Pour-over craft beer pug drinking vinegar live-edge gastropub, keytar neutra sustainable fingerstache kickstarter.</div>
+      <div className="w-full sm:p-4  mb-6">
+        <h1 className="title-font font-medium text-xl mb-2 text-gray-900">Here's your current weather report for the city of <b>{weather.name}</b></h1>
+        <div className="leading-relaxed"></div>
       </div>
 
    
@@ -74,13 +78,7 @@ const CurrentWeather = () => {
                   </div>
                
     </div>
-    <div className="lg:w-1/2 sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0">
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-</svg>
-        <Map/> 
-    </div>
+   
     <div className="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
 
     <Link to ="/forecast"  ><a className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">View Forecast

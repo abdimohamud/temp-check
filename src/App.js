@@ -5,6 +5,7 @@ import Loading from "./components/Loading";
 import { WeatherProvider } from "./context";
 import GetStarted from "./components/Started";
 import CurrentWeather from "./components/CurrentWeather";
+import Forecast from "./components/Forecast";
 const  App=(props) => {
   
 const initialtState = {
@@ -33,20 +34,21 @@ const [state, setState] = useState(initialtState)
     <div className="flex flex-col min-h-screen">
     <WeatherProvider value={{state:state, setState:setState}}>
     <Route render={({ location }) => ( 
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence exitBeforeEnter={true}>
       <Switch location={location} key={location.pathname}>    
-      <Route
-          path="/"
-          exact
-          component={(props) => (
-            <Loading isFirstMount={isFirstMount} {...props} />
-          )}
-        />
         <Route path="/get-started" component ={(props) =>(
           <GetStarted {...props} />
-        )} />
+          )} />
 
         <Route path="/weather" component={(props)=>( <CurrentWeather {...props} />)}/>
+        <Route path="/forecast" component={(props) => (<Forecast {...props} />)} />
+          <Route
+              path="/"
+              exact
+              component={(props) => (
+                <Loading isFirstMount={isFirstMount} {...props} />
+              )}
+            />
       </Switch>
     </AnimatePresence>
     )} />
