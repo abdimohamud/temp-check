@@ -40,7 +40,7 @@ export const timeConverter =(UNIX_timestamp) =>{
   }
   
 export const fetchForecastByZip = (zip) => {
-    return axios.get(`api.openweathermap.org/data/2.5/forecast/daily?zip=${zip},US&cnt=5&appid=${apiKey}`, {
+    return axios.get(`${baseURL}/forecast/daily?zip=${zip},US&cnt=5&appid=${apiKey}`, {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json"
@@ -48,7 +48,7 @@ export const fetchForecastByZip = (zip) => {
       });
 }
 export const fetchForecastByLocation= (lat, lon) => {
-  return axios.get(`api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=5&appid=${apiKey}`, {
+  return axios.get(`${baseURL}/forecast/daily?lat=${lat}&lon=${lon}&cnt=5&appid=${apiKey}`, {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json"
