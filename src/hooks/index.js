@@ -8,7 +8,7 @@ export const KelvintoFahrenheit = (k) => {
   return (k * 1.8 - 459.67).toFixed(1);
 };
 export const fetchWeatherByLocation = (lat, lon) => {
-  return axios.get(`${baseURL}/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`, {
+  return axios.get(`${baseURL}/weather?lat=${lat}&lon=${lon}&appid=${apiKey.toString()}`, {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json"
@@ -17,7 +17,7 @@ export const fetchWeatherByLocation = (lat, lon) => {
 };
 
 export const fetchWeatherByZip =(zip) => {
-    return axios.get(`${baseURL}/weather?zip=${zip},US&appid=${apiKey}`, {
+    return axios.get(`${baseURL}/weather?zip=${zip},US&appid=${apiKey.toString()}`, {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json"
@@ -40,7 +40,7 @@ export const timeConverter =(UNIX_timestamp) =>{
   }
   
 export const fetchForecastByZip = (zip) => {
-    return axios.get(`${baseURL}/forecast/daily?zip=${zip},US&cnt=5&appid=${apiKey}`, {
+    return axios.get(`${baseURL}/forecast/daily?zip=${zip},US&cnt=5&appid=${apiKey.toString()}`, {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json"
@@ -48,7 +48,7 @@ export const fetchForecastByZip = (zip) => {
       });
 }
 export const fetchForecastByLocation= (lat, lon) => {
-  return axios.get(`${baseURL}/forecast/daily?lat=${lat}&lon=${lon}&cnt=5&appid=${apiKey}`, {
+  return axios.get(`${baseURL}/forecast/daily?lat=${lat}&lon=${lon}&cnt=5&appid=${apiKey.toString()}`, {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json"
