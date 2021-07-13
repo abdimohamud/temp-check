@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let apiKey = process.env.WEATHER_API_KEY;
+let apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
 let baseURL = "api.openweathermap.org/data/2.5";
 

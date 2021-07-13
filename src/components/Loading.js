@@ -58,7 +58,7 @@ const blackBox = {
 
 
 const InitialTransition = () => {
-  let name ="absolute z-50 flex"
+ 
     // Scroll user to top to avoid showing the footer
     React.useState(() => {
       typeof windows !== "undefined" && window.scrollTo(0, 0);
@@ -72,7 +72,7 @@ const InitialTransition = () => {
         variants={blackBox}
         onAnimationStart={() => document.body.classList.add("overflow-hidden")}
         onAnimationComplete={() =>{
-          name="";
+        
           document.body.classList.remove("overflow-hidden")
           window.scrollTo(0, 0);
         }}

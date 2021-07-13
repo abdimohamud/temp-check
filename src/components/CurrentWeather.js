@@ -18,7 +18,7 @@ const CurrentWeather = () => {
      else if (state.zip.length>0) {
          fetchWeatherByZip(state.zip).then(res=>{setWeather(res.data) ;setLoading(false)}).catch(err=>console.log(err))
      }
-  }, [state.zip.length, state.lon, state.lat])
+  }, [state.zip, state.lon, state.lat])
  
     return (
         <div>
@@ -81,7 +81,7 @@ const CurrentWeather = () => {
    
     <div className="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
 
-    <Link to ="/forecast"  ><a className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">View Forecast
+    <Link to ="/forecast"  ><a href="/forecast" className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">View Forecast
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
   <path fill-rule="evenodd" d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd" />
 </svg>

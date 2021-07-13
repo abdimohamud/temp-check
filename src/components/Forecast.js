@@ -26,7 +26,7 @@ const Forecast = () => {
         else if (state.zip.length>0) {
             fetchForecastByZip(state.zip).then(res=>{setForecast(res.data) ;setLoading(false)}).catch(err=>console.log(err))
         }
-     }, [state.zip.length, state.lon, state.lat])
+     }, [state.zip.length, state.zip, state.lon, state.lat])
     
    function toggleModal() {
     setIsOpen(!isOpen);

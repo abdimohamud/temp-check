@@ -3,8 +3,7 @@ import React, {useContext, useState, useEffect} from "react"
 import {
     GoogleMap,
     useLoadScript,
-    Marker,
-    InfoWindow,
+
   } from "@react-google-maps/api";
 import WeatherContext from "../context";
 import axios from "axios";
@@ -22,12 +21,9 @@ import axios from "axios";
     disableDefaultUI: true,
     zoomControl: true,
   };
-  const initalcenter = {
-    lat: 43.6532,
-    lng: -79.3832,
-  };
 
-let key =process.env.GOOGLE_API_KEY
+
+let key =process.env.REACT_APP_GOOGLE_API_KEY
 
 const Map = () => {
     const { isLoaded, loadError } = useLoadScript({
